@@ -321,10 +321,15 @@
                                     <action selector="didTouchGo" destination="4rS-L1-53r" eventType="touchUpInside" id="6Kf-43-ltz"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mLu-Dv-eUL">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="u1r-oD-UvH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="mLu-Dv-eUL" firstAttribute="centerX" secondItem="y52-TX-8LS" secondAttribute="centerX" id="1yz-sl-ddt"/>
                             <constraint firstItem="xBE-0E-uXy" firstAttribute="leading" secondItem="ylq-bS-b5m" secondAttribute="trailing" constant="5" id="5HL-h5-E0n"/>
                             <constraint firstItem="ylq-bS-b5m" firstAttribute="top" secondItem="l86-Sc-Bzb" secondAttribute="bottom" constant="5" id="99V-lE-84k"/>
                             <constraint firstItem="q1S-dc-y3k" firstAttribute="top" secondItem="ylq-bS-b5m" secondAttribute="bottom" constant="5" id="Ano-sQ-QzR"/>
@@ -342,6 +347,7 @@
                             <constraint firstItem="q1S-dc-y3k" firstAttribute="leading" secondItem="u1r-oD-UvH" secondAttribute="leading" id="WIM-bT-G9p"/>
                             <constraint firstItem="q1S-dc-y3k" firstAttribute="top" secondItem="l86-Sc-Bzb" secondAttribute="bottom" constant="30" id="fb5-4w-zAv"/>
                             <constraint firstItem="ylq-bS-b5m" firstAttribute="leading" secondItem="u1r-oD-UvH" secondAttribute="leading" constant="10" id="j1W-XC-yiS"/>
+                            <constraint firstItem="mLu-Dv-eUL" firstAttribute="centerY" secondItem="y52-TX-8LS" secondAttribute="centerY" id="jV2-8B-B0l"/>
                             <constraint firstItem="ae3-0w-5s5" firstAttribute="top" secondItem="RPB-l5-w9k" secondAttribute="bottom" constant="10" id="jdl-dd-vHE"/>
                             <constraint firstItem="xdH-mU-3WW" firstAttribute="leading" secondItem="RPB-l5-w9k" secondAttribute="trailing" constant="5" id="l7z-dV-C8v"/>
                             <constraint firstItem="ae3-0w-5s5" firstAttribute="leading" secondItem="xBE-0E-uXy" secondAttribute="trailing" constant="5" id="sbu-gA-xDm"/>
@@ -357,6 +363,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="mLu-Dv-eUL" id="xw5-94-eqR"/>
                         <outlet property="currentPageDataLabel" destination="2vW-xE-WnN" id="0X9-nf-6G2"/>
                         <outlet property="currentPageLabel" destination="l86-Sc-Bzb" id="LqN-Yh-xiN"/>
                         <outlet property="gotoPageLabel" destination="ylq-bS-b5m" id="bvu-2z-iAd"/>
@@ -432,6 +439,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad" returnKeyType="go"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="b7d-c0-TUk">
+                                <rect key="frame" x="373" y="798" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cEp-e8-B4s"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

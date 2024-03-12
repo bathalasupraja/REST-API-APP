@@ -19,6 +19,7 @@ class AllUsersViewController: UIViewController {
     @IBOutlet weak var gotoPageTextField: UITextField!
     @IBOutlet weak var totalPagesLabel: UILabel!
     @IBOutlet weak var totalPagesDataLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var usersTableView: UITableView!
     
     var users = [User]()
@@ -26,6 +27,7 @@ class AllUsersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.hidesWhenStopped = true
         gotoPageTextField.delegate = self
         gotoPageTextField.keyboardType = .decimalPad
         title = "All users"
@@ -35,6 +37,7 @@ class AllUsersViewController: UIViewController {
     }
     
     func fetchAllUsers() {
+        activityIndicator.startAnimating()
         print("start fetching data.")
         WebServiceManager.shared.getAllUsers { users, pagination, error in
             DispatchQueue.main.async {
@@ -47,6 +50,7 @@ class AllUsersViewController: UIViewController {
                 print(pagination)
                 print("data is reloading with \(self.users.count) item's")
                 self.usersTableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         }
     }
