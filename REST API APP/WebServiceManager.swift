@@ -66,11 +66,12 @@ class WebServiceManager {
     
     /// Get All Available Users.
     /// - returns: completion with available users and error if exist.
-    func getAllUsers(completion: @escaping([User]?, PaginationModel?, String?) -> ()) {
-        guard let url = URL(string: "https://gorest.co.in/public-api/users") else {
+    func getAllUsers(page: Int, completion: @escaping([User]?, PaginationModel?, String?) -> ()) {
+        guard let url = URL(string: "https://gorest.co.in/public-api/users?page=\(page)") else {
             completion(nil, nil, "Unable to create URL")
             return
         }
+        print(url)
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data else {

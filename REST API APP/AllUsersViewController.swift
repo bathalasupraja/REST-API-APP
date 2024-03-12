@@ -23,6 +23,7 @@ class AllUsersViewController: UIViewController {
     @IBOutlet weak var usersTableView: UITableView!
     
     var users = [User]()
+    var totalPages = 0
     
 
     override func viewDidLoad() {
@@ -31,20 +32,21 @@ class AllUsersViewController: UIViewController {
         gotoPageTextField.delegate = self
         gotoPageTextField.keyboardType = .decimalPad
         title = "All users"
-        fetchAllUsers()
+        fetchAllUsers(page: 1)
         usersTableView.delegate = self
         usersTableView.dataSource = self
     }
     
-    func fetchAllUsers() {
+    func fetchAllUsers(page: Int) {
         activityIndicator.startAnimating()
         print("start fetching data.")
-        WebServiceManager.shared.getAllUsers { users, pagination, error in
+        WebServiceManager.shared.getAllUsers(page: page) { users, pagination, error in
             DispatchQueue.main.async {
                 self.users = users ?? []
                 let currentPage = pagination?.page ?? 0
                 self.currentPageDataLabel.text = "\(currentPage)"
                 let totalPages = pagination?.pages ?? 0
+                self.totalPages = totalPages
                 self.totalPagesDataLabel.text = "\(totalPages)"
                 print(error ?? "?")
                 print(pagination)
@@ -88,6 +90,13 @@ extension AllUsersViewController {
     @IBAction func didTouchGo() {
         print(gotoPageTextField.text)
         gotoPageTextField.resignFirstResponder()
+        if let text = gotoPageTextField.text, let page = Int(text), page <= totalPages {
+            fetchAllUsers(page: page)
+        } else {
+            let alert = UIAlertController(title: "Wrong input!", message: "Enter a valid page number.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            self.present(alert, animated: true)
+        }
     }
 }
 
